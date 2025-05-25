@@ -45,7 +45,9 @@ def scrape_all_overviews():
         print(f"[{i+1}/{len(symbols)}] 🔍 {sym}")
         data = get_stock_overview(sym)
         results.append(data)
-        time.sleep(0.25)  # avoid rate limiting
+        if i == 100:
+            break # this condition is added due to limited time
+        #time.sleep(0.25)  # avoid rate limiting
 
     df_out = pd.DataFrame(results)
 
